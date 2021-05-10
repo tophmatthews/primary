@@ -49,6 +49,14 @@ XFEM                        := no
 include $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
 
+FRAGMENT_DIR        ?= $(shell dirname `pwd`)/fragment
+# check that fragment is available
+ifneq ($(wildcard $(FRAGMENT_DIR)/fragment.mk),)
+	APPLICATION_DIR    := $(FRAGMENT_DIR)
+	APPLICATION_NAME   := fragment
+	include            $(FRAGMENT_DIR)/fragment.mk
+endif
+
 # dep apps
 APPLICATION_DIR    := $(CURDIR)
 APPLICATION_NAME   := primary
