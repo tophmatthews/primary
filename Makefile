@@ -51,10 +51,11 @@ include $(MOOSE_DIR)/modules/modules.mk
 
 FRAGMENT_DIR        ?= $(shell dirname `pwd`)/fragment
 # check that fragment is available
-ifneq ($(wildcard $(FRAGMENT_DIR)/fragment.mk),)
+FRAGMENT_CONTENT := $(shell ls $(FRAGMENT_DIR) 2> /dev/null)
+ifneq ($(FRAGMENT_CONTENT),)
 	APPLICATION_DIR    := $(FRAGMENT_DIR)
 	APPLICATION_NAME   := fragment
-	include            $(FRAGMENT_DIR)/fragment.mk
+	include            $(FRAMEWORK_DIR)/app.mk
 endif
 
 # dep apps
