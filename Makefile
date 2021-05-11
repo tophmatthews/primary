@@ -49,14 +49,9 @@ XFEM                        := no
 include $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
 
-FRAGMENT_DIR        ?= $(shell dirname `pwd`)/fragment
-# check that fragment is available
-FRAGMENT_CONTENT := $(shell ls $(FRAGMENT_DIR) 2> /dev/null)
-ifneq ($(FRAGMENT_CONTENT),)
-	APPLICATION_DIR    := $(FRAGMENT_DIR)
-	APPLICATION_NAME   := fragment
-	include            $(FRAMEWORK_DIR)/app.mk
-endif
+
+FRAGMENT_DIRS				?=	$(wildcard $(shell dirname `pwd`)/fr*)
+$(foreach fragment,$(FRAGMENT_DIRS),$(eval APPLICATION_DIR:=$(fragment))$(eval APPLICATION_NAME:=$(lastword $(subst /, ,$(fragment))))$(eval include $(FRAMEWORK_DIR)/app.mk))
 
 # dep apps
 APPLICATION_DIR    := $(CURDIR)
