@@ -49,9 +49,8 @@ XFEM                        := no
 include $(MOOSE_DIR)/modules/modules.mk
 ###############################################################################
 
-
 FRAGMENT_DIRS				?=	$(wildcard $(shell dirname `pwd`)/fr*)
-$(foreach fragment,$(FRAGMENT_DIRS),$(eval APPLICATION_DIR:=$(fragment))$(eval APPLICATION_NAME:=$(lastword $(subst /, ,$(fragment))))$(eval include $(FRAMEWORK_DIR)/app.mk))
+$(foreach fragment,$(FRAGMENT_DIRS),$(eval APPLICATION_DIR:=$(fragment))$(eval APPLICATION_NAME:=$(lastword $(subst /, ,$(fragment))))$(eval ADDITIONAL_INCLUDES:=-I$(CURDIR)/include)$(eval include $(FRAMEWORK_DIR)/app.mk))
 
 # dep apps
 APPLICATION_DIR    := $(CURDIR)

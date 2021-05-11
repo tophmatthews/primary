@@ -2,17 +2,17 @@
 
 #include "DirichletBCBase.h"
 
-class PrimeBCBase;
+class PrimaryBCBase;
 
 template <>
-InputParameters validParams<PrimeBCBase>();
+InputParameters validParams<PrimaryBCBase>();
 
-class PrimeBCBase : public DirichletBCBase
+class PrimaryBCBase : public DirichletBCBase
 {
 public:
   static InputParameters validParams();
 
-  PrimeBCBase(const InputParameters & parameters);
+  PrimaryBCBase(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpValue() override;
