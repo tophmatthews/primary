@@ -25,7 +25,7 @@
     value = 0
   []
   [right]
-    type = PrimeBC
+    type = PrimaryBC
     variable = u
     boundary = right
   []
